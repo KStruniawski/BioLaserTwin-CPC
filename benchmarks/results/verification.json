@@ -325,22 +325,26 @@
       "nL_um": {
         "n": 4,
         "rho": 1.0,
-        "p": 0.0
+        "asymptotic_p": 0.0,
+        "exact_permutation_p": 0.08333333333333333
       },
       "z1_visc": {
         "n": 4,
         "rho": 0.0,
-        "p": 1.0
+        "asymptotic_p": 1.0,
+        "exact_permutation_p": 1.0
       },
       "z2_bound": {
         "n": 4,
         "rho": 0.39999999999999997,
-        "p": 0.6
+        "asymptotic_p": 0.6,
+        "exact_permutation_p": 0.75
       },
       "z4_scat": {
         "n": 4,
         "rho": -0.7999999999999999,
-        "p": 0.20000000000000007
+        "asymptotic_p": 0.20000000000000007,
+        "exact_permutation_p": 0.3333333333333333
       }
     },
     "bae_pielm_25pct": {

@@ -1,5 +1,5 @@
 {
-  "simulator_throughput_fps": 361.34352864585213,
+  "simulator_throughput_fps": 353.1095266401922,
   "n_frames_timed": 100,
   "d_gt_fsr_shifts": {
     "L_15um": {
@@ -19,13 +19,13 @@
     }
   },
   "active_pielm_fit_s": {
-    "lambda_0.1": 2.9035227089188993,
-    "lambda_0.25": 2.584748291876167
+    "lambda_0.1": 2.7159253330901265,
+    "lambda_0.25": 2.402053166180849
   },
   "core_benchmark_runtimes_s": {
     "verification": 233.26325287483633,
-    "stage_a_full": null,
+    "stage_a_full": 1833.2662682081573,
     "sggw_445nm_ablation": 150.93452358385548
   },
-  "total_core_runtime_min": 6.40329627431153
+  "total_core_runtime_min": 36.95773407778082
 }

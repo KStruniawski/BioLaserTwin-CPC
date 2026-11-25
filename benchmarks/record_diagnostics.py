@@ -73,16 +73,17 @@ def main() -> None:
     stage_a = json.loads((results_dir / "stage_a_full.json").read_text())
     sggw = json.loads((results_dir / "sggw_445nm_ablation.json").read_text())
 
+    s1_lat = verif.get("bae_and_s1_per_latent", {}).get("s1_per_latent", {})
     for k, ex in cpc["exact_s1_permutation_p"].items():
-        if k in verif.get("s1_per_latent", {}):
-            old_p = verif["s1_per_latent"][k].pop("p", verif["s1_per_latent"][k].get("asymptotic_p"))
-            verif["s1_per_latent"][k]["asymptotic_p"] = old_p
-            verif["s1_per_latent"][k]["exact_permutation_p"] = ex["exact_two_sided_p"]
+        if k in s1_lat:
+            old_p = s1_lat[k].pop("p", s1_lat[k].get("asymptotic_p"))
+            s1_lat[k]["asymptotic_p"] = old_p
+            s1_lat[k]["exact_permutation_p"] = ex["exact_two_sided_p"]
     verif_path.write_text(json.dumps(verif, indent=2) + "\n")
 
     core_runtimes_s = {
         "verification": verif.get("runtime_s"),
-        "stage_a_full": stage_a.get("runtime_s"),
+        "stage_a_full": stage_a.get("total_runtime_s", stage_a.get("runtime_s")),
         "sggw_445nm_ablation": sggw.get("runtime_s"),
     }
     total_core_min = sum(v for v in core_runtimes_s.values() if v is not None) / 60.0

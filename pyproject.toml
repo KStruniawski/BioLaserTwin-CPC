@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "biolaser-twin-cpc"
+version = "0.1.0"
+description = "BioLaserTwin: Fabry-Perot cavity lasing simulator, feature extractor, Fisher/DoE identifiability, and discrepancy-aware inverse benchmarking suite."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Karol Struniawski", email = "karol.struniawski@sggw.edu.pl" },
+]
+requires-python = ">=3.10"
+keywords = [
+    "biophotonics",
+    "fabry-perot",
+    "microcavity-laser",
+    "identifiability",
+    "inverse-problems",
+    "physics-informed-extreme-learning-machine",
+    "bayesian-approximation-error",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+    "numpy>=1.26.0,<2.4.0",
+    "scipy>=1.11.0",
+    "torch>=2.1.0",
+    "matplotlib>=3.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.4",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["biolaser_twin*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

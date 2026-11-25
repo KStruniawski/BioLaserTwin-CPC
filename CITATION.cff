@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+title: "BioLaserTwin: Simulation and Inverse Modeling of Fabry-Perot Cavity Lasing with Model Discrepancy in Thioflavin T-Based Amyloid Analysis"
+message: "If you use BioLaserTwin-CPC in your research, please cite it using the metadata below."
+type: software
+authors:
+  - given-names: "Karol"
+    family-names: "Struniawski"
+    email: "karol.struniawski@sggw.edu.pl"
+    affiliation: "Institute of Information Technology, Warsaw University of Life Sciences (WULS)"
+  - given-names: "Aleksandra"
+    family-names: "Konopka"
+    affiliation: "Institute of Information Technology, Warsaw University of Life Sciences (WULS)"
+  - given-names: "Konstantin"
+    family-names: "Rusakov"
+    affiliation: "Institute of Civil Engineering, Warsaw University of Life Sciences (WULS)"
+  - given-names: "Piotr"
+    family-names: "Hańczyc"
+    affiliation: "Cellular Immunotherapy Centre, Warsaw University of Life Sciences (WULS)"
+version: "0.1.0"
+date-released: "2026-11-25"
+license: "MIT"
+keywords:
+  - "biophotonics"
+  - "Fabry-Perot microcavity"
+  - "Thioflavin T lasing"
+  - "identifiability"
+  - "physics-informed extreme learning machine"
+  - "Bayesian approximation error"
+  - "conformal prediction"
+abstract: >-
+  Standalone release of BioLaserTwin accompanying the Computer Physics
+  Communications (CPiP) manuscript. Provides a 16x-oversampled gain-loaded Airy
+  cavity simulator strictly isolated from reduced-order inverse solvers,
+  observable extraction, Fisher/DoE identifiability, BAE-corrected PIELM,
+  neural baselines, and split-conformal uncertainty quantification.

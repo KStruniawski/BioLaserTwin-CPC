@@ -1,0 +1,23 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Packaging / distribution
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Testing / caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS / editor artifacts
+.DS_Store
+.vscode/
+.idea/
+
+# Generated figure outputs
+figures/

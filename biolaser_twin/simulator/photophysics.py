@@ -40,12 +40,6 @@ def simulate_secondary_nucleation_kinetics(
     k_off: float = 0.015,
 ) -> KineticTrajectory:
     """Simulate mass-conserving monomer -> oligomer -> fibril kinetics on arbitrary time grids."""
-    warnings.warn(
-        "simulate_secondary_nucleation_kinetics is deprecated in BioLaserTwin v0.2; "
-        "use biolaser_twin.simulator.kinetics.solve_pbe instead.",
-        DeprecationWarning,
-        stacklevel=2,
-    )
     n_steps = len(times_min)
     m = np.zeros(n_steps, dtype=float)
     o = np.zeros(n_steps, dtype=float)

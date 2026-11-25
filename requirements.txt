@@ -1,5 +1,5 @@
 numpy>=1.26.0,<2.4.0
 scipy>=1.11.0
 torch>=2.1.0
-sympy>=1.12
+matplotlib>=3.8.0
 pytest>=8.0.0

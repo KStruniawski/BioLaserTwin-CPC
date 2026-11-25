@@ -17,7 +17,7 @@ if str(Path(__file__).resolve().parent) not in sys.path:
 from biolaser_twin.extractor import extract_sweep_features
 from biolaser_twin.identifiability import DesignConfig, reduced_forward_observables
 from biolaser_twin.metrics import normalized_rmse
-from biolaser_twin.observations import ObservationRecord, build_observation_record, calibrate_nominal_constants_from_dev
+from biolaser_twin.observations import ObservationRecord, build_observation_record, calibrate_nominal_constants_from_dev, estimate_noise_cov
 from biolaser_twin.simulator import FabryPerotConfig, FabryPerotTruthSimulator, LatentProxyVector, map_latents_to_truth_state
 from biolaser_twin.solvers import PhotonicPIELMSolver, PlainELMSolver, TabularMLPSolver
 from run_stage_a_full import LATENT_NAMES, LATENT_PRIOR_SCALES
@@ -102,8 +102,15 @@ def run_paired_bae_control() -> dict:
     x_tr91 = np.vstack([x_tr, x_dev])
     y_tr91 = np.vstack([y_tr, y_dev])
 
+    base_noise_cov = estimate_noise_cov(recs_dev)
     recs_col_bae = [
-        ObservationRecord(values=r.values - bae_mean, mask=r.mask, design=r.design, lasing_405=r.lasing_405, lasing_440=r.lasing_440)
+        ObservationRecord(
+            values=np.where(r.mask, r.values - bae_mean, np.nan),
+            mask=r.mask,
+            design=r.design,
+            lasing_405=r.lasing_405,
+            lasing_440=r.lasing_440,
+        )
         for r in recs_col
     ]
     lam_grid = [0.0, 1e-4, 1e-3, 1e-2, 0.05, 0.1, 0.25, 0.5]
@@ -116,7 +123,7 @@ def run_paired_bae_control() -> dict:
         ("TabularMLP_91", lambda s: TabularMLPSolver(hidden_dim=64, n_ensemble=3, epochs=120, seed=s).fit(x_tr91, y_tr91, val_features=x_va, val_targets=y_va)),
     ]:
         nlz4, all4 = [], []
-        for s in range(5):
+        for s in range(1, 6):
             m = fn(s)
             mu, _ = m.predict_with_uncertainty(x_te)
             nr = normalized_rmse(y_te, mu, ref_scale=LATENT_PRIOR_SCALES)
@@ -125,15 +132,18 @@ def run_paired_bae_control() -> dict:
         out[label] = {"nl_z4_mean": float(np.mean(nlz4)), "nl_z4_std": float(np.std(nlz4)), "all4_mean": float(np.mean(all4))}
 
     for label, col_recs, cov_mat in [
-        ("PhotonicPIELM_uncorr_75", recs_col, np.diag(np.maximum(np.nanvar(diffs, axis=0), 1e-6))),
-        ("BAE_mean_only_75", recs_col_bae, np.diag(np.maximum(np.nanvar(diffs, axis=0), 1e-6))),
+        ("PhotonicPIELM_uncorr_75", recs_col, base_noise_cov),
+        ("BAE_mean_only_75", recs_col_bae, base_noise_cov),
         ("BAE_PhotonicPIELM_75", recs_col_bae, bae_cov),
     ]:
         nlz4, all4, lams = [], [], []
-        for s in range(5):
+        for s in range(1, 6):
             best_m, best_l, best_v = None, 0.0, float("inf")
             for lam in lam_grid:
-                m = PhotonicPIELMSolver(hidden_dim=48, n_ensemble=3, phys_lambda=lam, constants=cal_consts, noise_cov=cov_mat, seed=s)
+                m = PhotonicPIELMSolver(
+                    hidden_dim=48, n_ensemble=3, phys_lambda=lam, n_gn_iters=3,
+                    constants=cal_consts, noise_cov=cov_mat, seed=s,
+                )
                 m.fit(x_tr, y_tr, collocation_features=x_col, collocation_records=col_recs)
                 mv, _ = m.predict_with_uncertainty(x_va)
                 val_nr = normalized_rmse(y_va, mv, ref_scale=LATENT_PRIOR_SCALES)

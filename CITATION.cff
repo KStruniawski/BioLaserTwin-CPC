@@ -19,6 +19,7 @@ authors:
 version: "0.1.0"
 date-released: "2026-11-25"
 license: "MIT"
+repository-code: "https://github.com/KStruniawski/BioLaserTwin-CPC"
 keywords:
   - "biophotonics"
   - "Fabry-Perot microcavity"

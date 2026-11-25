@@ -10,6 +10,9 @@ readme = "README.md"
 license = { text = "MIT" }
 authors = [
     { name = "Karol Struniawski", email = "karol.struniawski@sggw.edu.pl" },
+    { name = "Aleksandra Konopka" },
+    { name = "Konstantin Rusakov" },
+    { name = "Piotr Hanczyc" },
 ]
 requires-python = ">=3.10"
 keywords = [

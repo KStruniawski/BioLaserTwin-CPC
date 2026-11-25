@@ -20,12 +20,14 @@ See Supporting Information Listing S1 for the self-contained end-to-end simulati
 
 | Manuscript Item | Script | Output Artifact |
 |---|---|---|
-| Analytical limits, bias ladder, BAE split, Fig. 5 | `python benchmarks/run_verification.py` | `benchmarks/results/verification.json` |
-| Main 9-solver benchmark, Level 0, UQ, Figs. 3–4 | `python benchmarks/run_stage_a_full.py` | `benchmarks/results/stage_a_full.json` |
-| Single 445 nm vs. dual 405+445 nm ablation, Fig. 6 | `python benchmarks/run_sggw_445nm_ablation.py` | `benchmarks/results/sggw_445nm_ablation.json` |
-| Kymera 328i PSF-width sweep, Table S3, Fig. 7(b) | `python benchmarks/run_kymera_gratings_doe.py` | `benchmarks/results/kymera_gratings_doe.json` |
+| Analytical limits, bias ladder, BAE split, Fig. 3 | `python benchmarks/run_verification.py` | `benchmarks/results/verification.json` |
+| Main 9-solver benchmark, Level 0, UQ, Tables 2–3, Figs. 4 & 6 | `python benchmarks/run_stage_a_full.py` | `benchmarks/results/stage_a_full.json` |
+| Single 445 nm vs. dual 405+445 nm ablation, Fig. 7 | `python benchmarks/run_sggw_445nm_ablation.py` | `benchmarks/results/sggw_445nm_ablation.json` |
+| Kymera 328i PSF-width sweep, Table S3, Fig. 5(b) | `python benchmarks/run_kymera_gratings_doe.py` | `benchmarks/results/kymera_gratings_doe.json` |
 | Paired BAE, $\hat{L}_{\text{nom}}$ controls, S1 exact p-values, Tables S4–S5 | `python benchmarks/run_cpc_controls.py` | `benchmarks/results/cpc_controls.json` |
-| Publication figures | `python benchmarks/generate_figures.py` | `figures/` |
+| Publication figures (Figs. 3, 4, 6, 7) | `python benchmarks/generate_figures.py` | `figures/` |
+| Architecture & BAE/Kymera figures (Figs. 1, 5) | `python benchmarks/generate_extra_figures.py` | `figures/` |
+| Full-sensor CCD frame preview (Fig. 2) | `python benchmarks/generate_frame_preview.py` | `figures/` |
 
 ## License & Archiving
 

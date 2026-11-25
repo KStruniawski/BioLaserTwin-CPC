@@ -1,0 +1,31 @@
+{
+  "simulator_throughput_fps": 361.34352864585213,
+  "n_frames_timed": 100,
+  "d_gt_fsr_shifts": {
+    "L_15um": {
+      "fsr_meas_nm": 5.748473748473742,
+      "fsr_ana_nm": 5.935020760847262,
+      "rel_dev": -0.031431568631427875
+    },
+    "L_30um": {
+      "fsr_meas_nm": 2.93040293040292,
+      "fsr_ana_nm": 2.9868551415368887,
+      "rel_dev": -0.018900217271642164
+    },
+    "L_45um": {
+      "fsr_meas_nm": 2.021978021978015,
+      "fsr_ana_nm": 1.9965638911134265,
+      "rel_dev": 0.012728934434657932
+    }
+  },
+  "active_pielm_fit_s": {
+    "lambda_0.1": 2.9035227089188993,
+    "lambda_0.25": 2.584748291876167
+  },
+  "core_benchmark_runtimes_s": {
+    "verification": 233.26325287483633,
+    "stage_a_full": null,
+    "sggw_445nm_ablation": 150.93452358385548
+  },
+  "total_core_runtime_min": 6.40329627431153
+}

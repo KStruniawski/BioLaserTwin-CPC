@@ -51,6 +51,9 @@ dev = [
 where = ["."]
 include = ["biolaser_twin*"]
 
+[tool.setuptools.package-data]
+"biolaser_twin.simulator" = ["*.json"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
